@@ -6,19 +6,11 @@ function MiniApp() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    // Telegram WebApp готов
     tg.ready();
-
-    // Получаем данные пользователя из Telegram
-    setUser(tg.initDataUnsafe.user); // безопасно получить базовые данные пользователя
-
-    // Если нужен доступ к initData — можно проверить подпись
-    // (для простоты здесь не реализовано)
-
+    setUser(tg.initDataUnsafe.user);
   }, []);
 
   const handleLogout = () => {
-    // В Mini App обычно выход — просто очистка локального состояния
     setUser(null);
   };
 
@@ -43,4 +35,6 @@ function MiniApp() {
   );
 }
 
-export default MiniApp;
+// Рендерим компонент в #root
+const rootElement = document.getElementById("root");
+ReactDOM.render(<MiniApp />, rootElement);
